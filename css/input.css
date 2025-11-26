@@ -41,5 +41,48 @@
   --font-poppins-regular: "poppins-regular";
   /* Shadows */
   --shadow-glass: 0px 8px 31px rgba(0, 0, 0, 0.1), inset 0px 1px 0px rgba(255, 255, 255, 0.5), inset 0px -1px 0px rgba(255, 255, 255, 0.2);
-  --shadow-circle: 0px 0px 60px 20px rgb(0, 0, 0, 0.2);
+  --shadow-circle: 0px 0px 100px 30px rgb(0, 0, 0, 0.2);
+}
+
+@layer base {
+  input {
+    outline: none;
+  }
+}
+
+@layer utilities {
+  .container {
+    @apply max-w-[1500px] h-full mx-auto;
+  }
+}
+
+@layer components {
+  body {
+    @apply font-poppins-regular text-sm overflow-x-hidden lg:text-[15px] xl:text-base;
+  }
+
+  /* Circles Wrapper */
+  .circle {
+    @apply size-30 absolute rounded-full shadow-circle opacity-60 blur-xl -z-50;
+  }
+
+  .circle1, .circle3 {
+    @apply bg-primary shadow-primary;
+  }
+
+  .circle2, .circle4 {
+    @apply bg-secondary shadow-secondary;
+  }
+
+  /* Header Section */
+  #theme-btn,
+  .searchbox,
+  #info-btn {
+    @apply bg-glass-background flex items-center shadow-glass rounded-full [&_svg]:fill-primary-text [&_svg]:size-5;
+  }
+
+  #theme-btn,
+  #info-btn {
+    @apply size-10 justify-center cursor-pointer [&_svg]:transition-colors [&_svg]:duration-200 hover:[&_svg]:fill-primary active:[&_svg]:fill-primary;
+  }
 }
