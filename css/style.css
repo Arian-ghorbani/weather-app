@@ -1,4 +1,24 @@
 /*! tailwindcss v4.1.17 | MIT License | https://tailwindcss.com */
+@font-face {
+  font-family: "poppins-black";
+  src: url("../assets/fonts/PoppinsLatin-Black.ttf") format("truetype");
+}
+@font-face {
+  font-family: "poppins-bold";
+  src: url("../assets/fonts/PoppinsLatin-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "poppins-semibold";
+  src: url("../assets/fonts/PoppinsLatin-SemiBold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "poppins-medium";
+  src: url("../assets/fonts/PoppinsLatin-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "poppins-regular";
+  src: url("../assets/fonts/PoppinsLatin-Regular.ttf") format("truetype");
+}
 @layer theme, base, components, utilities;
 @layer theme {
   :root, :host {

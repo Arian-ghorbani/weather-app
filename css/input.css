@@ -1,1 +1,45 @@
+@font-face {
+  font-family: "poppins-black";
+  src: url("../assets/fonts/PoppinsLatin-Black.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "poppins-bold";
+  src: url("../assets/fonts/PoppinsLatin-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "poppins-semibold";
+  src: url("../assets/fonts/PoppinsLatin-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "poppins-medium";
+  src: url("../assets/fonts/PoppinsLatin-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "poppins-regular";
+  src: url("../assets/fonts/PoppinsLatin-Regular.ttf") format("truetype");
+}
+
 @import "tailwindcss";
+
+@theme {
+  /* Colors */
+  --color-primary: #00A6F4;
+  --color-secondary: #FF6900;
+  --color-base-background: #FFFFFF;
+  --color-primary-text: #000000;
+  --color-secondary-text: #7D7D7D;
+  --color-glass-background: rgba(255, 255, 255, 0.2);
+  /* Fonts */
+  --font-poppins-black: "poppins-black";
+  --font-poppins-bold: "poppins-bold";
+  --font-poppins-semibold: "poppins-semibold";
+  --font-poppins-medium: "poppins-medium";
+  --font-poppins-regular: "poppins-regular";
+  /* Shadows */
+  --shadow-glass: 0px 8px 31px rgba(0, 0, 0, 0.1), inset 0px 1px 0px rgba(255, 255, 255, 0.5), inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  --shadow-circle: 0px 0px 60px 20px rgb(0, 0, 0, 0.2);
+}
