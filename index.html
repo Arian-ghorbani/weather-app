@@ -7,17 +7,27 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <div class="circle circle1 top-0 -left-2 md:left-[20%] xl:left-[35%]"></div>
-    <div
-      class="circle circle2 -top-4 -right-5 md:right-[20%] xl:right-[30%]"
-    ></div>
-    <div class="circle circle3 bottom-50 -right-10"></div>
-    <div class="circle circle4 -bottom-7 -left-5"></div>
+    <!-- Background Circles -->
+    <div class="w-full h-dvh fixed overflow-hidden">
+      <div
+        class="circle circle1 left-0 top-0 md:left-[20%] xl:left-[33%]"
+      ></div>
+      <div
+        class="circle circle2 -right-5 -top-5 md:right-[22%] xl:right-[32%]"
+      ></div>
+      <div
+        class="circle circle3 -right-5 bottom-[30%] lg:right-[15%] xl:right-[25%]"
+      ></div>
+      <div
+        class="circle circle4 -left-5 -bottom-5 lg:left-[25%] lg:bottom-[20%]"
+      ></div>
+    </div>
 
-    <div class="container">
+    <!-- Content -->
+    <div class="container relative">
       <header
         id="header"
-        class="w-full px-4 py-6 flex items-center justify-center gap-x-4 md:gap-x-6"
+        class="px-4 py-6 flex items-center justify-between gap-x-4"
       >
         <!-- Theme Button -->
         <button type="button" aria-label="Theme-button" id="theme-btn">
@@ -51,6 +61,7 @@
           <input
             type="text"
             placeholder="Search..."
+            id="input-city"
             class="w-full pr-2 placeholder:text-primary-text"
           />
         </div>
@@ -68,6 +79,117 @@
           </svg>
         </button>
       </header>
+
+      <main id="main">
+        <!-- City Section -->
+        <section
+          class="city-wrapper mt-7 mb-13 flex items-center justify-center gap-x-2"
+        >
+          <!-- Location Icon -->
+          <div
+            class="location-icon [&>svg]:size-7 lg:[&>svg]:size-8 xl:[&>svg]:size-9"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path
+                d="M12,6a4,4,0,1,0,4,4A4,4,0,0,0,12,6Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,12Z"
+              />
+              <path
+                d="M12,24a5.271,5.271,0,0,1-4.311-2.2c-3.811-5.257-5.744-9.209-5.744-11.747a10.055,10.055,0,0,1,20.11,0c0,2.538-1.933,6.49-5.744,11.747A5.271,5.271,0,0,1,12,24ZM12,2.181a7.883,7.883,0,0,0-7.874,7.874c0,2.01,1.893,5.727,5.329,10.466a3.145,3.145,0,0,0,5.09,0c3.436-4.739,5.329-8.456,5.329-10.466A7.883,7.883,0,0,0,12,2.181Z"
+              />
+            </svg>
+          </div>
+          <!-- City Name -->
+          <h1
+            id="city-name"
+            class="font-poppins-semibold text-3xl lg:text-4xl xl:text-5xl"
+          >
+            Tehran
+          </h1>
+        </section>
+
+        <section class="weather-content px-4 flex items-center justify-center">
+          <div
+            class="content-card bg-glass-background w-full p-4 space-y-8 rounded-2xl shadow-glass lg:space-y-12"
+          >
+            <!-- Day And Clock Wrapper -->
+            <div
+              class="top-card-wrapper w-full flex items-center justify-between"
+            >
+              <h3 class="day font-poppins-bold">Today</h3>
+              <p class="clock font-poppins-medium">06:54 pm</p>
+            </div>
+
+            <!-- Temp Wrapper -->
+            <div class="temp-wrapper flex items-center justify-center gap-x-10">
+              <h2
+                class="temp font-poppins-bold text-[40px] md:text-5xl xl:text-6xl"
+              >
+                24°C
+              </h2>
+              <img
+                src="./assets/image/cloud.png"
+                alt="Temp Icon"
+                class="size-20 md:size-22 lg:size-24 xl:size-26"
+              />
+            </div>
+
+            <!-- Humidity, Wind And Pressure Wrapper -->
+            <div
+              class="more-info-weather grid grid-cols-2 grid-rows-2 gap-2 md:grid-cols-3 md:grid-rows-1"
+            >
+              <div class="humidity-wrapper bg-[rgba(0,166,244,0.7)]">
+                <span class="humidity-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    data-name="Layer 1"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M10,17a1,1,0,0,1-.831-1.555l4-6a1,1,0,0,1,1.664,1.11l-4,6A1,1,0,0,1,10,17Zm9.779,3.778c6.858-7.336,1.519-14.521-4.565-19.6h0a4.947,4.947,0,0,0-6.426,0C2.706,6.231-2.63,13.491,4.222,20.778a11,11,0,0,0,15.556,0ZM13.919,2.7h0C18.7,6.777,24.43,12.966,18.364,19.364a9.043,9.043,0,0,1-12.728,0c-6.071-6.4-.325-12.6,4.445-16.662a2.958,2.958,0,0,1,3.838,0ZM8,10a1,1,0,0,0,2,0A1,1,0,0,0,8,10Zm6,6a1,1,0,0,0,2,0A1,1,0,0,0,14,16Z"
+                    />
+                  </svg>
+                </span>
+                <h4 class="humidity-title">Humidity</h4>
+                <p class="humidity">100%</p>
+              </div>
+
+              <div class="wind-wrapper bg-[rgba(0,166,244,0.5)]">
+                <span class="wind-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    data-name="Layer 1"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M0,12a1,1,0,0,1,1-1H7a1,1,0,0,1,0,2H1A1,1,0,0,1,0,12Zm20.886-.893A4.99,4.99,0,1,0,12,8a1,1,0,0,0,2,0,3,3,0,1,1,3,3H11a1,1,0,0,0,0,2h9a2,2,0,0,1,2,2c-.009,2.337-3.281,2.648-4.057.667a1,1,0,0,0-1.886.666C17.615,20.415,23.952,19.579,24,15A4,4,0,0,0,20.886,11.107ZM11,16H1a1,1,0,0,0,0,2H11a2,2,0,0,1,2,2c-.009,2.337-3.281,2.648-4.057.667a1,1,0,1,0-1.886.666C8.615,25.415,14.952,24.579,15,20A4,4,0,0,0,11,16ZM1,8H7a4,4,0,0,0,4-4C10.952-.581,4.613-1.414,3.057,2.667a1,1,0,0,0,1.886.666C5.72,1.351,8.991,1.663,9,4A2,2,0,0,1,7,6H1A1,1,0,0,0,1,8Z"
+                    />
+                  </svg>
+                </span>
+                <h4 class="wind-title">Wind</h4>
+                <p class="wind">100%</p>
+              </div>
+
+              <div
+                class="pressure-wrapper bg-[rgba(0,166,244,0.3)] col-span-2 md:col-span-1"
+              >
+                <span class="pressure-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    data-name="Layer 1"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M10,17a1,1,0,0,1-.831-1.555l4-6a1,1,0,0,1,1.664,1.11l-4,6A1,1,0,0,1,10,17Zm9.779,3.778c6.858-7.336,1.519-14.521-4.565-19.6h0a4.947,4.947,0,0,0-6.426,0C2.706,6.231-2.63,13.491,4.222,20.778a11,11,0,0,0,15.556,0ZM13.919,2.7h0C18.7,6.777,24.43,12.966,18.364,19.364a9.043,9.043,0,0,1-12.728,0c-6.071-6.4-.325-12.6,4.445-16.662a2.958,2.958,0,0,1,3.838,0ZM8,10a1,1,0,0,0,2,0A1,1,0,0,0,8,10Zm6,6a1,1,0,0,0,2,0A1,1,0,0,0,14,16Z"
+                    />
+                  </svg>
+                </span>
+                <h4 class="pressure-title">Pressure</h4>
+                <p class="pressure">100%</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
     </div>
 
     <script src="./js/main.js"></script>

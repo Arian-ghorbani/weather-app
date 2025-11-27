@@ -58,12 +58,12 @@
 
 @layer components {
   body {
-    @apply font-poppins-regular text-sm overflow-x-hidden lg:text-[15px] xl:text-base;
+    @apply font-poppins-medium text-sm lg:text-[15px] xl:text-base;
   }
 
   /* Circles Wrapper */
   .circle {
-    @apply size-30 absolute rounded-full shadow-circle opacity-60 blur-xl -z-50;
+    @apply size-40 absolute rounded-full shadow-circle opacity-40 blur-xl -z-50 lg:size-50;
   }
 
   .circle1, .circle3 {
@@ -75,6 +75,11 @@
   }
 
   /* Header Section */
+  #header,
+  #main {
+    @apply max-w-[630px] mx-auto;
+  }
+
   #theme-btn,
   .searchbox,
   #info-btn {
@@ -84,5 +89,35 @@
   #theme-btn,
   #info-btn {
     @apply size-10 justify-center cursor-pointer [&_svg]:transition-colors [&_svg]:duration-200 hover:[&_svg]:fill-primary active:[&_svg]:fill-primary;
+  }
+
+  /* Main Section */
+  .day,
+  .clock {
+    @apply text-[15px] md:text-base lg:text-lg;
+  }
+
+  .humidity-wrapper,
+  .wind-wrapper,
+  .pressure-wrapper {
+    @apply p-2 flex flex-col justify-start gap-y-2 rounded-xl;
+  }
+
+  .humidity-icon,
+  .wind-icon,
+  .pressure-icon {
+    @apply [&>svg]:size-5 lg:[&>svg]:size-6;
+  }
+
+  /* .humidity-title,
+  .wind-title,
+  .pressure-title {
+    @apply ;
+  } */
+
+  .humidity,
+  .wind,
+  .pressure {
+    @apply font-poppins-semibold;
   }
 }
