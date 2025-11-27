@@ -15,20 +15,26 @@
 
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* Colors */
   --color-primary: #00A6F4;
   --color-base-background: #FFFFFF;
+  --color-dark-base-background: #030712;
   --color-primary-text: #000000;
-  --color-secondary-text: #7D7D7D;
+  --color-dark-primary-text: #FFFFFF;
   --color-glass-background: rgba(255, 255, 255, 0.2);
+  --color-dark-glass-background: rgba(0, 0, 0, 0.2);
   --color-svg: #000000;
+  --color-dark-svg: #FFFFFF;
   /* Fonts */
   --font-poppins-bold: "poppins-bold";
   --font-poppins-medium: "poppins-medium";
   --font-poppins-regular: "poppins-regular";
   /* Shadows */
   --shadow-glass: 0px 8px 31px rgba(0, 0, 0, 0.1), inset 0px 1px 0px rgba(255, 255, 255, 0.5), inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  --shadow-dark-glass: 0px 8px 31px rgba(116, 114, 130, 0.1), inset 0px 1px 0px rgba(116, 114, 130, 0.5), inset 0px -1px 0px rgba(116, 114, 130, 0.2);
   /* Backdrop Blur */
   --backdrop-blur-primary: 5px;
   /* Animates */
@@ -60,7 +66,7 @@
 
 @layer components {
   body {
-    @apply font-poppins-medium text-sm lg:text-[15px] xl:text-base;
+    @apply bg-base-background text-primary-text font-poppins-medium text-sm dark:bg-dark-base-background dark:text-dark-primary-text lg:text-[15px] xl:text-base;
   }
 
   /* Header Section */
@@ -72,7 +78,7 @@
   #theme-btn,
   .searchbox,
   #info-btn {
-    @apply bg-glass-background backdrop-blur-primary flex items-center shadow-glass rounded-full [&_svg]:fill-primary-text [&_svg]:size-5;
+    @apply bg-glass-background backdrop-blur-primary flex items-center shadow-glass rounded-full dark:bg-dark-glass-background dark:shadow-dark-glass [&_svg]:fill-svg [&_svg]:size-5 dark:[&_svg]:fill-dark-svg;
   }
 
   #theme-btn,
@@ -83,7 +89,7 @@
   /* Main Section */
   .day,
   .clock {
-    @apply text-primary-text text-[15px] md:text-base lg:text-lg;
+    @apply text-primary-text text-[15px] dark:text-dark-primary-text md:text-base lg:text-lg;
   }
 
   .humidity-wrapper,
@@ -95,18 +101,18 @@
   .humidity-icon,
   .wind-icon,
   .pressure-icon {
-    @apply [&>svg]:fill-svg [&>svg]:size-5 lg:[&>svg]:size-6;
+    @apply [&>svg]:fill-svg dark:[&>svg]:fill-dark-svg [&>svg]:size-5 lg:[&>svg]:size-6;
   }
 
   .humidity-title,
   .wind-title,
   .pressure-title {
-    @apply text-primary-text;
+    @apply text-primary-text dark:text-dark-primary-text;
   }
 
   .humidity,
   .wind,
   .pressure {
-    @apply font-poppins-bold text-primary-text;
+    @apply font-poppins-bold text-primary-text dark:text-dark-primary-text;
   }
 }
