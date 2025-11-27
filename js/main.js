@@ -1,7 +1,9 @@
 const htmlElem = document.documentElement;
+// Theme
 const themeBtn = document.querySelector("#theme-btn");
 let colorTheme = null;
 
+// Theme
 const getThemeLocalStorage = () => {
   colorTheme = localStorage.getItem("color-theme");
 
@@ -29,8 +31,10 @@ const changeTheme = () => {
 };
 
 const pageLoaded = () => {
+  // Theme
   getThemeLocalStorage();
 };
 
+// Theme
 themeBtn.addEventListener("click", changeTheme);
 window.addEventListener("DOMContentLoaded", pageLoaded);
