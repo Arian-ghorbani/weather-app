@@ -1,16 +1,6 @@
 @font-face {
-  font-family: "poppins-black";
-  src: url("../assets/fonts/PoppinsLatin-Black.ttf") format("truetype");
-}
-
-@font-face {
   font-family: "poppins-bold";
   src: url("../assets/fonts/PoppinsLatin-Bold.ttf") format("truetype");
-}
-
-@font-face {
-  font-family: "poppins-semibold";
-  src: url("../assets/fonts/PoppinsLatin-SemiBold.ttf") format("truetype");
 }
 
 @font-face {
@@ -28,20 +18,32 @@
 @theme {
   /* Colors */
   --color-primary: #00A6F4;
-  --color-secondary: #FF6900;
   --color-base-background: #FFFFFF;
   --color-primary-text: #000000;
   --color-secondary-text: #7D7D7D;
   --color-glass-background: rgba(255, 255, 255, 0.2);
+  --color-svg: #000000;
   /* Fonts */
-  --font-poppins-black: "poppins-black";
   --font-poppins-bold: "poppins-bold";
-  --font-poppins-semibold: "poppins-semibold";
   --font-poppins-medium: "poppins-medium";
   --font-poppins-regular: "poppins-regular";
   /* Shadows */
   --shadow-glass: 0px 8px 31px rgba(0, 0, 0, 0.1), inset 0px 1px 0px rgba(255, 255, 255, 0.5), inset 0px -1px 0px rgba(255, 255, 255, 0.2);
-  --shadow-circle: 0px 0px 100px 30px rgb(0, 0, 0, 0.2);
+  /* Backdrop Blur */
+  --backdrop-blur-primary: 5px;
+  /* Animates */
+  --animate-horizontal-move: horizontal-move 3s linear infinite;
+
+  @keyframes horizontal-move {
+    0%,
+    100% {
+      transform: translateX(-10px);
+    }
+
+    50% {
+      transform: translateX(10px);
+    }
+  }
 }
 
 @layer base {
@@ -61,19 +63,6 @@
     @apply font-poppins-medium text-sm lg:text-[15px] xl:text-base;
   }
 
-  /* Circles Wrapper */
-  .circle {
-    @apply size-40 absolute rounded-full shadow-circle opacity-40 blur-xl -z-50 lg:size-50;
-  }
-
-  .circle1, .circle3 {
-    @apply bg-primary shadow-primary;
-  }
-
-  .circle2, .circle4 {
-    @apply bg-secondary shadow-secondary;
-  }
-
   /* Header Section */
   #header,
   #main {
@@ -83,7 +72,7 @@
   #theme-btn,
   .searchbox,
   #info-btn {
-    @apply bg-glass-background flex items-center shadow-glass rounded-full [&_svg]:fill-primary-text [&_svg]:size-5;
+    @apply bg-glass-background backdrop-blur-primary flex items-center shadow-glass rounded-full [&_svg]:fill-primary-text [&_svg]:size-5;
   }
 
   #theme-btn,
@@ -94,7 +83,7 @@
   /* Main Section */
   .day,
   .clock {
-    @apply text-[15px] md:text-base lg:text-lg;
+    @apply text-primary-text text-[15px] md:text-base lg:text-lg;
   }
 
   .humidity-wrapper,
@@ -106,18 +95,18 @@
   .humidity-icon,
   .wind-icon,
   .pressure-icon {
-    @apply [&>svg]:size-5 lg:[&>svg]:size-6;
+    @apply [&>svg]:fill-svg [&>svg]:size-5 lg:[&>svg]:size-6;
   }
 
-  /* .humidity-title,
+  .humidity-title,
   .wind-title,
   .pressure-title {
-    @apply ;
-  } */
+    @apply text-primary-text;
+  }
 
   .humidity,
   .wind,
   .pressure {
-    @apply font-poppins-semibold;
+    @apply font-poppins-bold text-primary-text;
   }
 }
