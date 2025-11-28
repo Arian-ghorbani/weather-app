@@ -7,6 +7,9 @@ const inputCityName = document.querySelector("#input-city");
 const searchBtn = document.querySelector(".search-btn");
 const baseURL = "https://api.openweathermap.org/data/2.5/weather";
 const apiKey = "f2a3b99194244950f22614868d9f6217";
+// Dveloper Info
+const infoBtn = document.querySelector("#info-btn");
+const infoContainer = document.querySelector(".info-container");
 
 // Theme
 const getThemeLocalStorage = () => {
@@ -90,6 +93,17 @@ const getClock = () => {
   }, 1000);
 };
 
+// Developer Info
+const showInfo = () => {
+  infoContainer.classList.remove("hidden");
+};
+
+const hideInfo = (event) => {
+  if (event.target === infoContainer) {
+    infoContainer.classList.add("hidden");
+  }
+};
+
 const pageLoaded = () => {
   // Theme
   getThemeLocalStorage();
@@ -102,5 +116,8 @@ themeBtn.addEventListener("click", changeTheme);
 // Search API
 searchBtn.addEventListener("click", getWeatherAPI);
 inputCityName.addEventListener("keyup", (event) => {event.key === "Enter" && getWeatherAPI()});
+// Developer Info
+infoBtn.addEventListener("click", showInfo);
+infoContainer.addEventListener("click", hideInfo);
 
 window.addEventListener("DOMContentLoaded", pageLoaded);
