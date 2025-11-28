@@ -3,6 +3,7 @@ const htmlElem = document.documentElement;
 const themeBtn = document.querySelector("#theme-btn");
 let colorTheme = null;
 // Weather API
+const inputCityName = document.querySelector("#input-city");
 const searchBtn = document.querySelector(".search-btn");
 const baseURL = "https://api.openweathermap.org/data/2.5/weather";
 const apiKey = "f2a3b99194244950f22614868d9f6217";
@@ -50,7 +51,6 @@ const inputDataWeather = (city, temp, humidity, wind, pressure) => {
 };
 
 const getWeatherAPI = async () => {
-  const inputCityName = document.querySelector("#input-city");
   const cityName = inputCityName.value.trim();
   const response = await fetch(`${baseURL}?q=${cityName}&appid=${apiKey}`);
   const data = await response.json();
@@ -73,5 +73,6 @@ const pageLoaded = () => {
 themeBtn.addEventListener("click", changeTheme);
 // Search API
 searchBtn.addEventListener("click", getWeatherAPI);
+inputCityName.addEventListener("keyup", (event) => {event.key === "Enter" && getWeatherAPI()});
 
 window.addEventListener("DOMContentLoaded", pageLoaded);
