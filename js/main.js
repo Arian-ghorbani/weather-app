@@ -64,9 +64,37 @@ const getWeatherAPI = async () => {
   inputDataWeather(city, temp, humidity, wind, pressure);
 };
 
+// Clock
+const showClock = (hour, minute) => {
+  const clockElem = document.querySelector(".clock");
+
+  clockElem.innerHTML = `${hour}:${minute}`;
+};
+
+const getClock = () => {
+  setInterval(() => {
+    const date = new Date();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let conditionClock = null;
+
+    if (hour < 10) {
+      hour = `0${hour}`;
+    }
+
+    if (minute < 10) {
+      minute = `0${minute}`;
+    }
+
+    showClock(hour, minute);
+  }, 1000);
+};
+
 const pageLoaded = () => {
   // Theme
   getThemeLocalStorage();
+  // Clock
+  getClock();
 };
 
 // Theme
