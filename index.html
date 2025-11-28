@@ -34,12 +34,12 @@
         </button>
 
         <!-- Searchbox -->
-        <div class="searchbox w-3/5 h-10 px-2 md:w-100 xl:w-120">
+        <div class="searchbox w-3/5 h-10 relative md:w-100 lg:h-11 xl:w-120">
           <!-- Search Button -->
           <button
             type="button"
             aria-label="Search-button"
-            class="search-btn w-10 h-full flex items-center justify-center"
+            class="search-btn bg-transparent size-10 absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full cursor-pointer md:left-1"
           >
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path
@@ -53,7 +53,7 @@
             type="text"
             placeholder="Search..."
             id="input-city"
-            class="w-full pr-2 placeholder:text-primary-text dark:placeholder:text-dark-primary-text"
+            class="size-full bg-transparent pl-11 pr-3 rounded-full transition-[outline] duration-100 outline-primary/50 ring-primary placeholder:text-primary-text dark:placeholder:text-dark-primary-text md:pl-12 focus:outline-4 focus:outline-solid focus:ring-1"
           />
         </div>
 

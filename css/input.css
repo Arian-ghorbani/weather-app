@@ -52,11 +52,11 @@
   }
 }
 
-@layer base {
+/* @layer base {
   input {
     outline: none;
   }
-}
+} */
 
 @layer utilities {
   .container {
@@ -83,7 +83,7 @@
 
   #theme-btn,
   #info-btn {
-    @apply size-10 justify-center cursor-pointer [&_svg]:transition-colors [&_svg]:duration-200 hover:[&_svg]:fill-primary active:[&_svg]:fill-primary;
+    @apply size-10 justify-center cursor-pointer lg:size-11 [&_svg]:transition-colors [&_svg]:duration-200 hover:[&_svg]:fill-primary active:[&_svg]:fill-primary;
   }
 
   /* Main Section */
