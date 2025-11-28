@@ -23,6 +23,7 @@
   --color-base-background: #FFFFFF;
   --color-dark-base-background: #030712;
   --color-primary-text: #000000;
+  --color-secondary-text: #7D7D7D;
   --color-dark-primary-text: #FFFFFF;
   --color-glass-background: rgba(255, 255, 255, 0.2);
   --color-dark-glass-background: rgba(0, 0, 0, 0.2);
@@ -114,5 +115,56 @@
   .wind,
   .pressure {
     @apply font-poppins-bold text-primary-text dark:text-dark-primary-text;
+  }
+
+  /*! --- Info Section --- */
+  .info-container {
+    @apply bg-glass-background backdrop-blur-lg absolute inset-0 flex items-center justify-center z-20 dark:bg-dark-glass-background;
+  }
+
+  /* Content Card */
+  .info-container .card {
+    @apply bg-glass-background w-55 p-4 relative flex flex-col items-center justify-between gap-4 rounded-3xl shadow-glass dark:bg-dark-glass-background dark:shadow-dark-glass md:w-110 md:flex-row;
+  }
+
+  .img-wrapper,
+  .content-wrapper,
+  .socials-wrapper {
+    @apply flex items-center justify-center;
+  }
+
+  /* Image & Content Wrapper */
+  .developer-img {
+    @apply size-20 object-cover object-center rounded-full lg:size-22;
+  }
+
+  .content-wrapper {
+    @apply flex-col gap-y-1 md:items-start;
+  }
+
+  .developer-name {
+    @apply font-poppins-bold text-base lg:text-lg;
+  }
+
+  .developer-info {
+    @apply text-secondary-text lg:text-base;
+  }
+
+  /* Socials Wrapper */
+  .socials-wrapper {
+    @apply gap-x-4 gap-y-1 md:flex-col;
+  }
+
+  .socials-wrapper .social,
+  .socials-wrapper .social a {
+    @apply flex items-center justify-center rounded-full;
+  }
+
+  .socials-wrapper .social {
+    @apply bg-glass-background size-8 p-0.5 shadow-glass [&_svg]:fill-white [&_svg]:size-5;
+  }
+
+    .socials-wrapper .social a {
+    @apply bg-primary size-full;
   }
 }
