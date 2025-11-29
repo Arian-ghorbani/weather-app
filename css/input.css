@@ -27,8 +27,8 @@
   --color-dark-primary-text: #FFFFFF;
   --color-glass-background: rgba(255, 255, 255, 0.2);
   --color-dark-glass-background: rgba(0, 0, 0, 0.2);
-  --color-svg: #000000;
-  --color-dark-svg: #FFFFFF;
+  --color-icon: #000000;
+  --color-dark-icon: #FFFFFF;
   /* Fonts */
   --font-poppins-bold: "poppins-bold";
   --font-poppins-medium: "poppins-medium";
@@ -53,15 +53,9 @@
   }
 }
 
-/* @layer base {
-  input {
-    outline: none;
-  }
-} */
-
 @layer utilities {
   .container {
-    @apply max-w-[1500px] h-full mx-auto;
+    @apply max-w-[630px] h-full mx-auto;
   }
 }
 
@@ -70,39 +64,95 @@
     @apply bg-base-background text-primary-text font-poppins-medium text-sm dark:bg-dark-base-background dark:text-dark-primary-text lg:text-[15px] xl:text-base;
   }
 
-  /* Header Section */
-  #header,
-  #main {
-    @apply max-w-[630px] mx-auto;
+  /*! --- Header Section --- */
+  #header, #main {
+    @apply w-full;
   }
 
   #theme-btn,
   .searchbox,
   #info-btn {
-    @apply bg-glass-background backdrop-blur-primary flex items-center shadow-glass rounded-full dark:bg-dark-glass-background dark:shadow-dark-glass [&_svg]:fill-svg [&_svg]:size-5 dark:[&_svg]:fill-dark-svg;
+    @apply bg-glass-background backdrop-blur-primary flex items-center shadow-glass rounded-full dark:bg-dark-glass-background dark:shadow-dark-glass;
   }
 
   #theme-btn,
   #info-btn {
-    @apply size-10 justify-center cursor-pointer lg:size-11 [&_svg]:transition-colors [&_svg]:duration-200 hover:[&_svg]:fill-primary active:[&_svg]:fill-primary;
+    @apply size-10 justify-center cursor-pointer lg:size-11;
   }
 
-  /* Main Section */
+  :where(#theme-btn, .search-btn, #info-btn) {
+    @apply hover:[&_.icon]:text-primary active:[&_.icon]:text-primary;
+  }
+
+  :where(#theme-btn, .search-btn, #info-btn) > .icon {
+    @apply text-[26px] text-icon transition-colors duration-200 dark:text-dark-icon lg:text-[28px];
+  }
+
+  .searchbox {
+    @apply w-3/5 h-10 relative md:w-100 lg:h-11 xl:w-120;
+  }
+
+  .searchbox .search-btn {
+    @apply bg-transparent size-10 absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full cursor-pointer md:left-1;
+  }
+
+  .searchbox #input-city {
+    @apply size-full bg-transparent pl-11 pr-3 rounded-full outline-primary/50 ring-primary transition-[outline] duration-100 placeholder:text-primary-text dark:placeholder:text-dark-primary-text md:pl-12;
+  }
+
+  .searchbox #input-city:focus {
+    @apply outline-4 outline-solid ring-1;
+  }
+
+  /*! --- Main Section --- */
+  /* City Name Wrapper */
+  .city-wrapper {
+    @apply mt-7 mb-13 flex items-center justify-center gap-x-2;
+  }
+
+  .city-wrapper .location-icon-wrapper > .icon {
+    @apply text-[32px] text-icon dark:text-dark-icon lg:text-[36px] xl:text-[40px];
+  }
+
+  /* Main Card */
+  .main-card {
+    @apply bg-glass-background backdrop-blur-primary w-full p-4 rounded-3xl shadow-glass dark:bg-dark-glass-background dark:shadow-dark-glass;
+  }
+
+  .search-status {
+    @apply flex items-center justify-center;
+  }
+
+  .search-status .status-title {
+    @apply font-poppins-bold text-base text-center lg:text-lg;
+  }
+
+  .main-card .search-content {
+    @apply space-y-8 lg:space-y-12;
+  }
+
+  /* Day & Clock Wrapper */
   .day,
   .clock {
     @apply text-primary-text text-[15px] dark:text-dark-primary-text md:text-base lg:text-lg;
   }
 
-  .humidity-wrapper,
-  .wind-wrapper,
-  .pressure-wrapper {
-    @apply p-2 flex flex-col justify-start gap-y-2 rounded-xl;
+  /* Temp Wrapper */
+  .temp {
+    @apply font-poppins-bold text-5xl md:text-[55px] lg:text-[65px] xl:text-7xl;
   }
 
-  .humidity-icon,
-  .wind-icon,
-  .pressure-icon {
-    @apply [&>svg]:fill-svg dark:[&>svg]:fill-dark-svg [&>svg]:size-5 lg:[&>svg]:size-6;
+  .condition-weather-img {
+    @apply size-20 animate-horizontal-move md:size-22 lg:size-24 xl:size-26;
+  }
+
+  :where(.humidity-wrapper, .wind-wrapper, .pressure-wrapper) {
+    @apply p-2 flex flex-col justify-start gap-y-2 rounded-2xl;
+  }
+
+  /* Humidity, Wind & Pressure Wrapper */
+  :where(.humidity-icon-wrapper, .wind-icon-wrapper, .pressure-icon-wrapper) > .icon {
+    @apply text-[21px] text-icon dark:text-dark-icon lg:text-[24px];
   }
 
   .humidity-title,
@@ -118,6 +168,10 @@
   }
 
   /*! --- Info Section --- */
+  .more-info-weather {
+    @apply grid grid-cols-2 grid-rows-2 gap-2 md:grid-cols-3 md:grid-rows-1;
+  }
+
   .info-container {
     @apply bg-glass-background backdrop-blur-lg absolute inset-0 flex items-center justify-center z-20 dark:bg-dark-glass-background;
   }
@@ -161,7 +215,7 @@
   }
 
   .socials-wrapper .social {
-    @apply bg-glass-background size-8 p-0.5 shadow-glass [&_svg]:fill-white [&_svg]:size-5;
+    @apply bg-glass-background size-8 p-0.5 shadow-glass [&_.icon]:text-white [&_.icon]:text-[20px];
   }
 
     .socials-wrapper .social a {
