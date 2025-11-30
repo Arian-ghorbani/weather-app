@@ -2,6 +2,8 @@
 
 A simple and modern web application for checking the current weather of any city — with **Dark/Light Mode** support.
 
+<img src="https://github.com/Arian-ghorbani/weather-app/blob/master/assets/image/weather-app-desktop.PNG" width="70%">
+
 ## 📌 About the Project
 
 Weather App is a lightweight tool that allows users to search for any city and view essential weather information including:
