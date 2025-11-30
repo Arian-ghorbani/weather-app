@@ -71,12 +71,12 @@ const updateWeatherUI = ({ city, temp, humidity, wind, pressure, condition }) =>
   pressureElem.textContent = `${pressure} hpa`;
 
   const icons = {
-    clear: "./assets/image/sunny.png",
+    clear: "./assets/image/clearly.png",
     clouds: "./assets/image/cloudy.png",
     rain: "./assets/image/rainy.png",
-    snow: "./assets/image/snow.png",
-    storm: "./assets/image/storm.png",
-    wind: "./assets/image/wind.png",
+    snow: "./assets/image/snowy.png",
+    storm: "./assets/image/stormy.png",
+    wind: "./assets/image/windy.png",
   };
 
   conditionImgElem.src = icons[condition] || icons["clouds"];
