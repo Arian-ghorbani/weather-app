@@ -28,7 +28,7 @@ The app uses the **OpenWeatherMap API** and includes a **Dark/Light theme switch
 
 - **HTML**
 - **TailwindCSS**
-- **JavaScript (ES6)**
+- **JavaScript**
 - **Git & GitHub**
 - **OpenWeatherMap API**
 
