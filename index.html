@@ -7,205 +7,149 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <!-- Background Circles -->
-    <div class="w-full h-dvh fixed overflow-hidden">
-      <div
-        class="bg-primary size-70 absolute top-3 left-1/2 -translate-x-1/2 rounded-full blur-3xl opacity-50 md:size-80 lg:size-90"
-      ></div>
-    </div>
+    <div class="background max-w-[700px] mx-auto bg-linear-to-b from-secondary to-primary shadow-xl shadow-primary/50 rounded-b-[3rem]">
+      <div class="container pt-4 pb-8 space-y-6">
+        <header id="header" class="px-4 flex items-center justify-between gap-x-4">
+          <!-- Searchbox -->
+          <div class="searchbox">
+            <button type="button" aria-label="Search-button" class="search-btn">
+              <iconify-icon icon="mingcute:search-3-line" class="icon"></iconify-icon>
+            </button>
 
-    <!-- Content -->
-    <div class="container relative">
-      <header
-        id="header"
-        class="px-4 py-6 flex items-center justify-between gap-x-4"
-      >
-        <!-- Theme Button -->
-        <button type="button" aria-label="Theme-button" id="theme-btn">
-          <iconify-icon icon="line-md:moon-loop" class="icon"></iconify-icon>
-        </button>
-
-        <!-- Searchbox -->
-        <div class="searchbox">
-          <!-- Search Button -->
-          <button type="button" aria-label="Search-button" class="search-btn">
-            <iconify-icon
-              icon="mingcute:search-3-line"
-              class="icon"
-            ></iconify-icon>
-          </button>
-
-          <!-- Search Input -->
-          <input type="text" placeholder="Search..." id="input-city" />
-        </div>
-
-        <!-- Info Button -->
-        <button type="button" aria-label="Info-button" id="info-btn">
-          <iconify-icon
-            icon="mingcute:information-line"
-            class="icon"
-          ></iconify-icon>
-        </button>
-      </header>
-
-      <main id="main">
-        <!-- City Section -->
-        <section class="city-wrapper hidden">
-          <!-- Location Icon -->
-          <div class="location-icon-wrapper animate-bounce">
-            <iconify-icon
-              icon="mingcute:location-line"
-              class="icon"
-            ></iconify-icon>
+            <input type="text" placeholder="Search..." id="input-city" />
           </div>
-          <!-- City Name -->
-          <h1
-            id="city-name"
-            class="font-poppins-bold text-4xl lg:text-[42px] xl:text-5xl"
-          >
-            <!-- Loaded data from JS -->
-          </h1>
-        </section>
 
-        <section class="weather-content px-4 flex items-center justify-center">
-          <div class="main-card">
+          <!-- Info button -->
+          <button type="button" aria-label="Info-button" id="info-btn">
+            <iconify-icon icon="mingcute:information-line" class="icon"></iconify-icon>
+          </button>
+        </header>
+
+        <main id="main" class="px-4 space-y-8 opacity-0 transition-opacity duration-500">
+          <!-- City name -->
+          <section class="city-wrapper hidden">
+            <div class="location-icon-wrapper flex [&_.icon]:text-icon [&_.icon]:text-lg [&_.icon]:lg:text-xl">
+              <iconify-icon icon="fluent:location-16-filled" class="icon"></iconify-icon>
+            </div>
+
+            <h1 id="city-name" class="font-poppins-bold text-primary-text text-lg lg:text-xl">
+              <!-- Loaded data from JS -->
+            </h1>
+          </section>
+
+          <!-- Weather content -->
+          <section class="weather-content">
             <!-- Search Status -->
             <div class="search-status">
-              <p class="status-title">Please search for the city name.</p>
+              <p class="status-title font-poppins-bold text-base text-center lg:text-lg">Please search for the city name.</p>
             </div>
 
-            <!-- Search Content -->
-            <div class="search-content hidden">
-              <!-- Day And Clock Wrapper -->
-              <div class="w-full flex items-center justify-between">
-                <h3 class="day font-poppins-bold">Today</h3>
-                <p class="clock">
+            <!-- Main Content -->
+            <div class="main-content space-y-6 hidden">
+              <!-- Temp and date -->
+              <div class="temp-wrapper flex flex-col items-center gap-y-6">
+                <div class="temp-icon-wrapper">
+                  <iconify-icon icon="bi:cloud-rain-fill" class="icon"></iconify-icon>
+                </div>
+
+                <h2 class="temp">
                   <!-- Loaded data from JS -->
-                </p>
+                </h2>
+
+                <h4 class="date">
+                  <!-- Loaded data from JS -->
+                </h4>
               </div>
 
-              <!-- Temp Wrapper -->
-              <div
-                class="temp-wrapper flex items-center justify-center gap-x-10 lg:gap-x-12"
-              >
-                <h2 class="temp">0°C</h2>
-                <img
-                  src=""
-                  alt="Condition Weather Image"
-                  class="condition-weather-img"
-                />
-              </div>
+              <sapn class="w-[calc(100%-3rem)] h-px mx-auto block bg-glass backdrop-blur-primary shadow-glass" aria-label="separator"></sapn>
 
-              <!-- Humidity, Wind And Pressure Wrapper -->
-              <div class="more-info-weather">
-                <div class="humidity-wrapper bg-[rgba(0,166,244,0.7)]">
-                  <span class="humidity-icon-wrapper">
-                    <iconify-icon
-                      icon="mingcute:drop-line"
-                      class="icon"
-                    ></iconify-icon>
+              <!-- Humidity, wind and pressure -->
+              <div class="more-info-weather flex items-center justify-center">
+                <div class="humidity-wrapper">
+                  <span class="icon-wrapper">
+                    <iconify-icon icon="entypo:drop" class="icon"></iconify-icon>
                   </span>
-                  <h4 class="humidity-title">Humidity</h4>
+
                   <p class="humidity">0%</p>
+
+                  <h4 class="humidity-title">Humidity</h4>
                 </div>
 
-                <div class="wind-wrapper bg-[rgba(0,166,244,0.5)]">
-                  <span class="wind-icon-wrapper">
-                    <iconify-icon
-                      icon="mingcute:wind-line"
-                      class="icon"
-                    ></iconify-icon>
+                <div class="wind-wrapper">
+                  <span class="icon-wrapper">
+                    <iconify-icon icon="mingcute:wind-fill" class="icon"></iconify-icon>
                   </span>
-                  <h4 class="wind-title">Wind</h4>
+
                   <p class="wind">0 km/h</p>
+
+                  <h4 class="wind-title">Wind</h4>
                 </div>
 
-                <div
-                  class="pressure-wrapper bg-[rgba(0,166,244,0.3)] col-span-2 md:col-span-1"
-                >
-                  <span class="pressure-icon-wrapper">
-                    <iconify-icon
-                      icon="mingcute:high-temperature-line"
-                      class="icon"
-                    ></iconify-icon>
+                <div class="pressure-wrapper">
+                  <span class="icon-wrapper">
+                    <iconify-icon icon="fa6-solid:temperature-half" class="icon"></iconify-icon>
                   </span>
-                  <h4 class="pressure-title">Pressure</h4>
+
                   <p class="pressure">0 hpa</p>
+
+                  <h4 class="pressure-title">Pressure</h4>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
-      </main>
+          </section>
+        </main>
+      </div>
     </div>
 
-    <!-- Info Container -->
+    <!-- ----- Info Container ----- -->
     <div class="info-container hidden">
-      <!-- Content Card -->
       <div class="card">
-        <!-- Image & Content Wrapper -->
+        <!-- Content -->
         <section class="flex flex-col gap-y-4 gap-x-6 md:flex-row">
           <div class="img-wrapper">
-            <img
-              src="./assets/image/developer-image.jpg"
-              alt="Developer Image"
-              class="developer-img"
-            />
+            <img src="./assets/image/developer-image.jpg" alt="Developer Image" class="developer-img size-20 object-cover object-center rounded-full lg:size-22" />
           </div>
 
           <div class="content-wrapper">
-            <h3 class="developer-name">Arian Ghorbani</h3>
-
-            <h4 class="developer-info">Front-End Developer</h4>
+            <h3 class="developer-name font-poppins-bold text-base lg:text-lg">Arian Ghorbani</h3>
+            <h4 class="developer-info text-secondary-text lg:text-base">Front-End Developer</h4>
           </div>
         </section>
 
-        <!-- Socials Wrapper -->
+        <!-- Socials -->
         <section class="socials-wrapper">
-          <span class="social telrgram">
-            <a
-              href="https://t.me/arian_ghorbanii"
-              target="_blank"
-              class="telegram-link"
-            >
-              <iconify-icon
-                icon="mingcute:telegram-fill"
-                class="icon"
-              ></iconify-icon>
+          <!-- Telegram -->
+          <div class="social">
+            <a href="https://t.me/arian_ghorbanii" target="_blank" rel="noopener" aria-label="telegram-link" class="social-link">
+              <iconify-icon icon="mingcute:telegram-fill" class="icon"></iconify-icon>
             </a>
-          </span>
+          </div>
 
-          <span class="social linkedin">
-            <a
-              href="https://www.linkedin.com/in/arian-ghorbani"
-              target="_blank"
-              class="linkedin-link"
-            >
-              <iconify-icon
-                icon="mingcute:linkedin-fill"
-                class="icon"
-              ></iconify-icon>
+          <!-- LinkedIn -->
+          <div class="social">
+            <a href="https://www.linkedin.com/in/arian-ghorbani" target="_blank" rel="noopener" aria-label="linkedin-link" class="social-link" >
+              <iconify-icon icon="mingcute:linkedin-fill" class="icon"></iconify-icon>
             </a>
-          </span>
+          </div>
 
-          <span class="social github">
-            <a
-              href="https://github.com/Arian-ghorbani"
-              target="_blank"
-              class="github-link"
-            >
-              <iconify-icon
-                icon="mingcute:github-fill"
-                class="icon"
-              ></iconify-icon>
+          <!-- Github -->
+          <div class="social">
+            <a href="https://github.com/Arian-ghorbani" target="_blank" rel="noopener" aria-label="github-link" class="social-link" >
+              <iconify-icon icon="mingcute:github-fill" class="icon"></iconify-icon>
             </a>
-          </span>
+          </div>
         </section>
       </div>
     </div>
 
+    <!-- ------ DOM loader ------ -->
+     <div class="dom-loader absolute inset-0 flex items-center justify-center bg-base-background z-11">
+      <iconify-icon icon="mingcute:loading-fill" class="text-[40px] text-sky-600 animate-spin"></iconify-icon>
+     </div>
+
+    <!-- Link to the my JS file -->
     <script src="./js/main.js"></script>
-    <!-- Iconify Link -->
+    <!-- Link to the iconify -->
     <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
   </body>
 </html>

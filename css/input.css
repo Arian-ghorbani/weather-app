@@ -13,212 +13,186 @@
   src: url("../assets/fonts/PoppinsLatin-Regular.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "dana-bold";
+  src: url("../assets/fonts/Dana-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "dana-medium";
+  src: url("../assets/fonts/Dana-Medium.ttf") format("truetype");
+}
+
+
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
   /* Colors */
-  --color-primary: #00A6F4;
-  --color-base-background: #FFFFFF;
-  --color-dark-base-background: #030712;
-  --color-primary-text: #000000;
-  --color-secondary-text: #7D7D7D;
-  --color-dark-primary-text: #FFFFFF;
+  --color-primary: rgba(255, 255, 255, 0);
+  --color-secondary: rgba(255, 255, 255, 0);
+  --color-primary-text: #FFFFFF;
+  --color-secondary-text: #D1D5DC;
+  --color-base-background: #E5E7EB;
   --color-glass-background: rgba(255, 255, 255, 0.2);
-  --color-dark-glass-background: rgba(0, 0, 0, 0.2);
-  --color-icon: #000000;
-  --color-dark-icon: #FFFFFF;
+  --color-icon: #FFFFFF;
   /* Fonts */
   --font-poppins-bold: "poppins-bold";
   --font-poppins-medium: "poppins-medium";
   --font-poppins-regular: "poppins-regular";
+  --font-dana-bold: "dana-bold";
+  --font-dana-medium: "dana-medium";
   /* Shadows */
-  --shadow-glass: 0px 8px 31px rgba(0, 0, 0, 0.1), inset 0px 1px 0px rgba(255, 255, 255, 0.5), inset 0px -1px 0px rgba(255, 255, 255, 0.2);
-  --shadow-dark-glass: 0px 8px 31px rgba(116, 114, 130, 0.1), inset 0px 1px 0px rgba(116, 114, 130, 0.5), inset 0px -1px 0px rgba(116, 114, 130, 0.2);
+  --shadow-glass: 0px 8px 31px rgba(0, 0, 0, 0.1), inset 1px 1px 0px rgba(255, 255, 255, 0.5), inset -1px -1px 0px rgba(255, 255, 255, 0.2);
   /* Backdrop Blur */
   --backdrop-blur-primary: 5px;
-  /* Animates */
-  --animate-horizontal-move: horizontal-move 3s linear infinite;
+}
 
-  @keyframes horizontal-move {
-    0%,
-    100% {
-      transform: translateX(-10px);
-    }
-
-    50% {
-      transform: translateX(10px);
-    }
+@layer base {
+  body {
+    @apply bg-base-background text-primary-text font-poppins-medium text-sm lg:text-[15px] xl:text-base;
   }
 }
 
 @layer utilities {
   .container {
-    @apply max-w-[630px] h-full mx-auto;
+    @apply max-w-[630px] mx-auto;
   }
 }
 
 @layer components {
-  body {
-    @apply bg-base-background text-primary-text font-poppins-medium text-sm dark:bg-dark-base-background dark:text-dark-primary-text lg:text-[15px] xl:text-base;
-  }
 
-  /*! --- Header Section --- */
-  #header, #main {
-    @apply w-full;
-  }
-
-  #theme-btn,
+  /*! ====== Header section ====== */
   .searchbox,
   #info-btn {
-    @apply bg-glass-background backdrop-blur-primary flex items-center shadow-glass rounded-full dark:bg-dark-glass-background dark:shadow-dark-glass;
+    @apply flex items-center bg-glass-background backdrop-blur-primary shadow-glass rounded-full;
   }
 
-  #theme-btn,
   #info-btn {
-    @apply size-10 justify-center cursor-pointer lg:size-11;
+    @apply size-10 justify-center grow-0 shrink-0 cursor-pointer lg:size-11;
   }
 
-  :where(#theme-btn, .search-btn, #info-btn) {
+  :where(.search-btn, #info-btn) {
     @apply hover:[&_.icon]:text-primary active:[&_.icon]:text-primary;
   }
 
-  :where(#theme-btn, .search-btn, #info-btn) > .icon {
-    @apply text-[26px] text-icon transition-colors duration-200 dark:text-dark-icon lg:text-[28px];
+  :where(.search-btn, #info-btn) .icon {
+    @apply text-icon text-[26px] transition-colors duration-200 lg:text-[28px];
   }
 
   .searchbox {
-    @apply w-3/5 h-10 relative md:w-100 lg:h-11 xl:w-120;
+    @apply h-10 relative grow shrink md:w-100 lg:h-11;
   }
 
   .searchbox .search-btn {
-    @apply bg-transparent size-10 absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full cursor-pointer md:left-1;
+    @apply size-10 absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center bg-transparent rounded-full cursor-pointer md:left-1;
   }
 
-  .searchbox #input-city {
-    @apply size-full bg-transparent pl-11 pr-3 rounded-full outline-primary/50 ring-primary transition-[outline] duration-100 placeholder:text-primary-text dark:placeholder:text-dark-primary-text md:pl-12;
+  #input-city {
+    @apply size-full pl-11 pr-3 bg-transparent font-dana-medium rounded-full outline-primary/50 ring-primary transition-[outline] duration-100 placeholder:text-primary-text md:pl-12;
   }
 
-  .searchbox #input-city:focus {
+  #input-city:focus {
     @apply outline-4 outline-solid ring-1;
   }
 
-  /*! --- Main Section --- */
-  /* City Name Wrapper */
+  /*! ====== Main section ====== */
+  /** City name section */
   .city-wrapper {
-    @apply mt-7 mb-13 flex items-center justify-center gap-x-2;
+    @apply w-fit mx-auto px-4 py-1 flex items-center justify-center gap-x-1 bg-glass-background backdrop-blur-primary shadow-glass rounded-full;
   }
 
-  .city-wrapper .location-icon-wrapper > .icon {
-    @apply text-[32px] text-icon dark:text-dark-icon lg:text-[36px] xl:text-[40px];
-  }
-
-  /* Main Card */
-  .main-card {
-    @apply bg-glass-background backdrop-blur-primary w-full p-4 rounded-3xl shadow-glass dark:bg-dark-glass-background dark:shadow-dark-glass;
-  }
-
+  /** Weather content section */
   .search-status {
-    @apply flex items-center justify-center;
+    @apply w-full p-2 flex items-center justify-center bg-glass-background backdrop-blur-primary shadow-glass rounded-full;
   }
 
-  .search-status .status-title {
-    @apply font-poppins-bold text-base text-center lg:text-lg;
+  /** Temp and date section */
+  .temp-wrapper .icon {
+    @apply text-icon text-[4.9rem] md:text-[5.2rem] lg:text-[5.9rem] xl:text-[6.4rem];
   }
 
-  .main-card .search-content {
-    @apply space-y-8 lg:space-y-12;
-  }
-
-  /* Day & Clock Wrapper */
-  .day,
-  .clock {
-    @apply text-primary-text text-[15px] dark:text-dark-primary-text md:text-base lg:text-lg;
-  }
-
-  /* Temp Wrapper */
   .temp {
-    @apply font-poppins-bold text-5xl md:text-[55px] lg:text-[65px] xl:text-7xl;
+    @apply relative font-poppins-bold text-5xl md:text-[55px] lg:text-[65px] xl:text-7xl;
   }
 
-  .condition-weather-img {
-    @apply size-20 animate-horizontal-move md:size-22 lg:size-24 xl:size-26;
+  .temp::after {
+    content: "°";
+    @apply absolute text-4xl md:text-[45px] lg:text-[55px] xl:text-6xl;
   }
 
-  :where(.humidity-wrapper, .wind-wrapper, .pressure-wrapper) {
-    @apply p-2 flex flex-col justify-start gap-y-2 rounded-2xl;
+  .date {
+    @apply text-secondary-text text-[15px] -mt-2 md:text-base lg:text-[17px];
   }
 
-  /* Humidity, Wind & Pressure Wrapper */
-  :where(.humidity-icon-wrapper, .wind-icon-wrapper, .pressure-icon-wrapper) > .icon {
-    @apply text-[21px] text-icon dark:text-dark-icon lg:text-[24px];
+  /*! ====== More info weather section ====== */
+  /** Humidity, wind and pressure section */
+  .humidity-wrapper,
+  .wind-wrapper,
+  .pressure-wrapper {
+    @apply px-2 flex flex-col items-center justify-start gap-y-1 grow shrink rounded-2xl;
   }
 
-  .humidity-title,
-  .wind-title,
-  .pressure-title {
-    @apply text-primary-text dark:text-dark-primary-text;
+  .icon-wrapper {
+    @apply mb-1 flex;
+  }
+
+  .icon-wrapper .icon {
+    @apply text-[22px] text-icon lg:text-[24px];
   }
 
   .humidity,
   .wind,
   .pressure {
-    @apply font-poppins-bold text-primary-text dark:text-dark-primary-text;
+    @apply text-primary-text;
   }
 
-  /*! --- Info Section --- */
-  .more-info-weather {
-    @apply grid grid-cols-2 grid-rows-2 gap-2 md:grid-cols-3 md:grid-rows-1;
+  .humidity-title,
+  .wind-title,
+  .pressure-title {
+    @apply text-secondary-text;
   }
 
+  /*! ====== info container ====== */
   .info-container {
-    @apply bg-glass-background backdrop-blur-lg absolute inset-0 flex items-center justify-center z-20 dark:bg-dark-glass-background;
+    @apply absolute inset-0 flex items-center justify-center bg-glass-background backdrop-blur-lg z-10;
   }
 
-  /* Content Card */
   .info-container .card {
-    @apply bg-glass-background w-55 p-4 relative flex flex-col items-center justify-between gap-4 rounded-3xl shadow-glass dark:bg-dark-glass-background dark:shadow-dark-glass md:w-110 md:flex-row;
+    @apply bg-glass-background w-55 p-4 relative flex flex-col items-center justify-between gap-4 rounded-4xl shadow-glass md:w-110 md:flex-row;
   }
 
+  /** Content section */
   .img-wrapper,
   .content-wrapper,
   .socials-wrapper {
     @apply flex items-center justify-center;
   }
 
-  /* Image & Content Wrapper */
-  .developer-img {
-    @apply size-20 object-cover object-center rounded-full lg:size-22;
-  }
-
   .content-wrapper {
     @apply flex-col gap-y-1 md:items-start;
   }
 
-  .developer-name {
-    @apply font-poppins-bold text-base lg:text-lg;
-  }
-
-  .developer-info {
-    @apply text-secondary-text lg:text-base;
-  }
-
-  /* Socials Wrapper */
+  /** Socials section */
   .socials-wrapper {
     @apply gap-x-4 gap-y-1 md:flex-col;
   }
 
-  .socials-wrapper .social,
-  .socials-wrapper .social a {
+  .social,
+  .social-link {
     @apply flex items-center justify-center rounded-full;
   }
 
-  .socials-wrapper .social {
-    @apply bg-glass-background size-8 p-0.5 shadow-glass [&_.icon]:text-white [&_.icon]:text-[20px];
+  .social {
+    @apply bg-glass-background size-8 p-0.5 shadow-glass;
   }
 
-    .socials-wrapper .social a {
-    @apply bg-primary size-full;
+  .social .icon {
+    @apply text-icon text-xl;
+  }
+
+  .social-link {
+    @apply bg-primary size-full transition-colors duration-100 ease-in-out hover:bg-secondary active:bg-secondary;
   }
 }

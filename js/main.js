@@ -1,90 +1,90 @@
-// ====== Cache DOM ======
+// ====== DOM ======
 const htmlElem = document.documentElement;
-const themeBtn = document.querySelector("#theme-btn");
+const backgroundElem = document.querySelector(".background");
+const mainElem = document.querySelector("#main");
 const searchBtn = document.querySelector(".search-btn");
 const inputCityName = document.querySelector("#input-city");
 const cityNameElem = document.querySelector(".city-wrapper");
 const searchStatusElem = document.querySelector(".search-status");
 const searchStatusTitleElem = document.querySelector(".status-title");
-const searchContentElem = document.querySelector(".search-content");
+const mainContentElem = document.querySelector(".main-content");
 const infoBtn = document.querySelector("#info-btn");
 const infoContainer = document.querySelector(".info-container");
+const dateElem = document.querySelector(".date");
 
-// Weather elements cached once
+// Weather info
 const cityElem = document.querySelector("#city-name");
 const tempElem = document.querySelector(".temp");
 const humidityElem = document.querySelector(".humidity");
 const windElem = document.querySelector(".wind");
 const pressureElem = document.querySelector(".pressure");
-const conditionImgElem = document.querySelector(".condition-weather-img");
+const tempIconWrapper = document.querySelector(".temp-icon-wrapper");
 
 // API
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 const API_KEY = "f2a3b99194244950f22614868d9f6217";
 
-// ====== Theme System ======
-const iconsTheme = {
-  light: `<iconify-icon icon="tabler:sun" class="icon"></iconify-icon>`,
-  dark: `<iconify-icon icon="tabler:moon-stars" class="icon"></iconify-icon>`,
+// Animation
+const addAnimation = () => {
+  main.classList.add("opacity-100");
 };
 
-const applyThemeIcon = (theme) => {
-  themeBtn.innerHTML = theme === "dark" ? iconsTheme.light : iconsTheme.dark;
-};
+// ====== Theme ======
+const backgroundChange = () => {
+  setInterval(() => {
+    const h = new Date().getHours();
 
-const loadTheme = () => {
-  const saved = localStorage.getItem("color-theme") || "light";
-  saved === "dark"
-    ? htmlElem.classList.add("dark")
-    : htmlElem.classList.remove("dark");
+    const theme = h >= 6 && h < 12
+      ? ["#0084D1", "#00BCFF"]
+      : h >= 12 && h < 20
+        ? ["#f54a00", "#ff8904"]
+        : h >= 20
+          ? ["#030712", "#101828"]
+          : ["#030712", "#101828"];
 
-  applyThemeIcon(saved);
-};
-
-const toggleTheme = () => {
-  const isDark = htmlElem.classList.toggle("dark");
-  const theme = isDark ? "dark" : "light";
-  localStorage.setItem("color-theme", theme);
-  applyThemeIcon(theme);
+    htmlElem.style.setProperty("--color-primary", theme[0]);
+    htmlElem.style.setProperty("--color-secondary", theme[1]);
+  }, 1000);
 };
 
 // ====== Weather API ======
-
 const hideError = () => {
   searchStatusElem.classList.add("hidden");
   cityNameElem.classList.remove("hidden");
-  searchContentElem.classList.remove("hidden");
+  mainContentElem.classList.remove("hidden");
 };
 
 const showError = () => {
   searchStatusElem.classList.remove("hidden");
   searchStatusTitleElem.textContent = "Location not found";
   cityNameElem.classList.add("hidden");
-  searchContentElem.classList.add("hidden");
+  mainContentElem.classList.add("hidden");
 };
 
 const updateWeatherUI = ({ city, temp, humidity, wind, pressure, condition }) => {
   cityElem.textContent = city;
-  tempElem.textContent = `${temp}°C`;
+  tempElem.textContent = `${temp}`;
   humidityElem.textContent = `${humidity}%`;
   windElem.textContent = `${wind} km/h`;
   pressureElem.textContent = `${pressure} hpa`;
 
   const icons = {
-    clear: "./assets/image/clearly.png",
-    clouds: "./assets/image/cloudy.png",
-    rain: "./assets/image/rainy.png",
-    snow: "./assets/image/snowy.png",
-    storm: "./assets/image/stormy.png",
-    wind: "./assets/image/windy.png",
+    clear: '<iconify-icon icon="si:sun-fill" class="icon"></iconify-icon>',
+    clouds: '<iconify-icon icon="ic:round-cloud" class="icon"></iconify-icon>',
+    rain: '<iconify-icon icon="fluent:location-16-filled" class="icon"></iconify-icon>',
+    snow: '<iconify-icon icon="bi:cloud-snow-fill" class="icon"></iconify-icon>',
+    storm: '<iconify-icon icon="famicons:thunderstorm" class="icon"></iconify-icon>',
+    wind: '<iconify-icon icon="fa-solid:wind" class="icon"></iconify-icon>',
   };
 
-  conditionImgElem.src = icons[condition] || icons["clouds"];
+  tempIconWrapper.innerHTML = icons[condition] || icons["clear"];
 };
 
 const getWeatherAPI = async () => {
   const city = inputCityName.value.trim();
   if (!city) return;
+
+  main.classList.remove("opacity-100");
 
   try {
     const url = `${BASE_URL}?q=${city}&appid=${API_KEY}`;
@@ -104,21 +104,25 @@ const getWeatherAPI = async () => {
     };
 
     updateWeatherUI(weatherData);
+    updateDate();
     hideError();
   } catch (err) {
     showError();
+  } finally {
+    setTimeout(() => { addAnimation(); }, 200);
   }
 };
 
-// ====== Clock ======
-const startClock = () => {
-  setInterval(() => {
-    const d = new Date();
-    const h = String(d.getHours()).padStart(2, "0");
-    const m = String(d.getMinutes()).padStart(2, "0");
-    const s = String(d.getSeconds()).padStart(2, "0");
-    document.querySelector(".clock").textContent = `${h}:${m}:${s}`;
-  }, 1000);
+// ====== Date ======
+const updateDate = () => {
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const d = new Date();
+  const day = days[d.getDay()];
+  const date = d.getDate();
+  const month = months[d.getMonth()];
+
+  dateElem.textContent = `${day}, ${date} ${month}`;
 };
 
 // ====== Developer Info ======
@@ -129,11 +133,13 @@ infoContainer.addEventListener("click", (e) => {
 
 // ====== Init ======
 window.addEventListener("DOMContentLoaded", () => {
-  loadTheme();
-  startClock();
+  backgroundChange();
+  addAnimation();
+
+  // ====== Hide DOM loader ======
+  setTimeout(() => { document.querySelector(".dom-loader").classList.add("hidden"); }, 1000);
 });
 
 // ====== Events ======
-themeBtn.addEventListener("click", toggleTheme);
 searchBtn.addEventListener("click", getWeatherAPI);
 inputCityName.addEventListener("keyup", (e) => e.key === "Enter" && getWeatherAPI());
