@@ -31,20 +31,30 @@ const addAnimation = () => {
 
 // ====== Theme ======
 const backgroundChange = () => {
-  setInterval(() => {
-    const h = new Date().getHours();
+  const h = new Date().getHours();
 
-    const theme = h >= 6 && h < 12
-      ? ["#0084D1", "#00BCFF"]
-      : h >= 12 && h < 20
-        ? ["#f54a00", "#ff8904"]
-        : h >= 20
-          ? ["#030712", "#101828"]
-          : ["#030712", "#101828"];
+  const theme = h >= 6 && h < 12
+    ? ["#0084D1", "#00BCFF"]
+    : h >= 12 && h < 20
+      ? ["#f54a00", "#ff8904"]
+      : h >= 20
+        ? ["#030712", "#101828"]
+        : ["#030712", "#101828"];
 
-    htmlElem.style.setProperty("--color-primary", theme[0]);
-    htmlElem.style.setProperty("--color-secondary", theme[1]);
-  }, 1000);
+  htmlElem.style.setProperty("--color-primary", theme[0]);
+  htmlElem.style.setProperty("--color-secondary", theme[1]);
+};
+
+// ====== Date ======
+const updateDate = () => {
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const d = new Date();
+  const day = days[d.getDay()];
+  const date = d.getDate();
+  const month = months[d.getMonth()];
+
+  dateElem.textContent = `${day}, ${date} ${month}`;
 };
 
 // ====== Weather API ======
@@ -71,7 +81,7 @@ const updateWeatherUI = ({ city, temp, humidity, wind, pressure, condition }) =>
   const icons = {
     clear: '<iconify-icon icon="si:sun-fill" class="icon"></iconify-icon>',
     clouds: '<iconify-icon icon="ic:round-cloud" class="icon"></iconify-icon>',
-    rain: '<iconify-icon icon="fluent:location-16-filled" class="icon"></iconify-icon>',
+    rain: '<iconify-icon icon="bi:cloud-rain-fill" class="icon"></iconify-icon>',
     snow: '<iconify-icon icon="bi:cloud-snow-fill" class="icon"></iconify-icon>',
     storm: '<iconify-icon icon="famicons:thunderstorm" class="icon"></iconify-icon>',
     wind: '<iconify-icon icon="fa-solid:wind" class="icon"></iconify-icon>',
@@ -103,26 +113,16 @@ const getWeatherAPI = async () => {
       condition: data.weather[0].main.toLowerCase(),
     };
 
-    updateWeatherUI(weatherData);
-    updateDate();
-    hideError();
+    setTimeout(() => {
+      updateWeatherUI(weatherData);
+      updateDate();
+      hideError();
+    }, 200);
   } catch (err) {
     showError();
   } finally {
-    setTimeout(() => { addAnimation(); }, 200);
+    setTimeout(() => { addAnimation() }, 200);
   }
-};
-
-// ====== Date ======
-const updateDate = () => {
-  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  const d = new Date();
-  const day = days[d.getDay()];
-  const date = d.getDate();
-  const month = months[d.getMonth()];
-
-  dateElem.textContent = `${day}, ${date} ${month}`;
 };
 
 // ====== Developer Info ======
@@ -135,9 +135,6 @@ infoContainer.addEventListener("click", (e) => {
 window.addEventListener("DOMContentLoaded", () => {
   backgroundChange();
   addAnimation();
-
-  // ====== Hide DOM loader ======
-  setTimeout(() => { document.querySelector(".dom-loader").classList.add("hidden"); }, 1000);
 });
 
 // ====== Events ======
