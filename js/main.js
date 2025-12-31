@@ -35,7 +35,7 @@ let weatherData = null;
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 const API_KEY = "f2a3b99194244950f22614868d9f6217";
 const AI_BASE_URL = "https://router.huggingface.co/v1/chat/completions";
-const AI_API_KEY = "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";
+const AI_API_KEY = "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";
 
 // Search loader
 const showSearchLoading = () => {
