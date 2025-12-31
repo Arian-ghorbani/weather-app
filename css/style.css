@@ -409,6 +409,9 @@
   .text-center {
     text-align: center;
   }
+  .font-dana-bold {
+    font-family: var(--font-dana-bold);
+  }
   .font-poppins-bold {
     font-family: var(--font-poppins-bold);
   }
@@ -1078,10 +1081,6 @@
     & .icon {
       color: var(--color-white);
     }
-  }
-  #chatbot-input {
-    --tw-outline-style: none;
-    outline-style: none;
   }
 }
 @property --tw-space-y-reverse {

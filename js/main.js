@@ -1,23 +1,26 @@
 // ====== DOM ======
 const htmlElem = document.documentElement;
-const backgroundElem = document.querySelector(".background");
-const mainElem = document.querySelector("#main");
+// Header
 const searchBtn = document.querySelector(".search-btn");
 const inputCityName = document.querySelector("#input-city");
+// City name section
 const cityNameElem = document.querySelector(".city-wrapper");
+// Search status section
 const searchStatusElem = document.querySelector(".search-status");
 const searchStatusTitleElem = document.querySelector(".status-title");
+// Main data section
 const mainContentElem = document.querySelector(".main-content");
 const infoBtn = document.querySelector("#info-btn");
 const infoContainer = document.querySelector(".info-container");
 const dateElem = document.querySelector(".date");
+const suggestionForUserElem = document.querySelector(".suggestion-for-user");
+// AI section
 const aiBtn = document.querySelector("#ai-btn");
 const chatContainerElem = document.querySelector(".chat-container");
 const closeChatBtn = document.querySelector(".closex-btn");
 const chatBodyElem = document.querySelector(".chat-body");
 const chatbotSendBtn = document.querySelector(".chatbot-send-btn");
 const chatbotInput = document.querySelector("#chatbot-input");
-const suggestionForUserElem = document.querySelector(".suggestion-for-user");
 
 // Weather info
 const cityElem = document.querySelector("#city-name");
@@ -26,14 +29,13 @@ const humidityElem = document.querySelector(".humidity");
 const windElem = document.querySelector(".wind");
 const pressureElem = document.querySelector(".pressure");
 const tempIconWrapper = document.querySelector(".temp-icon-wrapper");
+let weatherData = null;
 
 // API
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 const API_KEY = "f2a3b99194244950f22614868d9f6217";
 const AI_BASE_URL = "https://router.huggingface.co/v1/chat/completions";
 const AI_API_KEY = "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";
-
-let weatherData = null;
 
 // Search loader
 const showSearchLoading = () => {
@@ -106,7 +108,7 @@ const getWeatherAPI = async () => {
     const data = await res.json();
 
     weatherData = {
-      city: data.name,
+      city,
       temp: Math.round(data.main.temp - 273.15),
       humidity: data.main.humidity,
       wind: data.wind.speed,
@@ -153,7 +155,8 @@ const getAIAPI = async (userMessage) => {
   const messages = [
     {
       role: "system",
-      content: `تو یک دستیار هواشناسی در یک برنامه هواشناسی هستی و بر اساس اطلاعات هواشناسی امروز: شهر: ${weatherData.city}، دما: ${weatherData.temp}°C، رطوبت: ${weatherData.humidity}%، سرعت باد: ${weatherData.wind} km/h، فشار هوا: ${weatherData.pressure} hpa، وضعیت هوا: ${weatherData.condition}. به فارسی جواب میدهی و از اصطلاحات ساده، دوستانه و محاوره‌ای استفاده کن.`
+      content: `تو یک دستیار هواشناسی در یک برنامه هواشناسی هستی و بر اساس اطلاعات هواشناسی امروز: شهر: ${weatherData.city}، دما: ${weatherData.temp}°C، رطوبت: ${weatherData.humidity}%، سرعت باد: ${weatherData.wind} km/h، فشار هوا: ${weatherData.pressure} hpa، وضعیت هوا: ${weatherData.condition}. به فارسی جواب  میدهی و از اصطلاحات ساده، دوستانه و محاوره‌ای استفاده کن. از گفتن «سلام»، «درود» و هر نوع خوش‌آمدگویی در پاسخ‌ها خودداری کن مگر اینکه کاربر اولین پیام را ارسال کرده باشد.
+      `
     },
     {
       role: "user",
@@ -184,6 +187,7 @@ const getAIAPI = async (userMessage) => {
 };
 
 const showChatbotData = async (userMessage) => {
+  if (!weatherData) return;
   const message = await getAIAPI(userMessage);
   chatBodyElem.lastElementChild.querySelector(".text-message").innerHTML = marked.parse(message);
 };
@@ -218,9 +222,6 @@ closeChatBtn.addEventListener("click", (e) => {
 chatbotSendBtn.addEventListener("click", sentMessage);
 
 chatbotInput.addEventListener("keyup", (e) => { if (e.key === "Enter") sentMessage() });
-
-// ====== Init ======
-// window.addEventListener("DOMContentLoaded", );
 
 // ====== Events ======
 searchBtn.addEventListener("click", getWeatherAPI);

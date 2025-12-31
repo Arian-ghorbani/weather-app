@@ -268,9 +268,5 @@
   .chatbot-send-btn {
     @apply flex items-center justify-center grow-0 shrink-0 bg-primary size-9 rounded-full cursor-pointer transition-colors duration-200 hover:bg-secondary active:bg-secondary [&_.icon]:text-2xl [&_.icon]:text-white;
   }
-
-  #chatbot-input {
-    @apply outline-none;
-  }
-
+  
 }
