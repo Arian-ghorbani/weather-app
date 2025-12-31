@@ -23,6 +23,11 @@
   src: url("../assets/fonts/Dana-Medium.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "dana-regular";
+  src: url("../assets/fonts/Dana-Regular.ttf") format("truetype");
+}
+
 
 @import "tailwindcss";
 
@@ -30,8 +35,8 @@
 
 @theme {
   /* Colors */
-  --color-primary: rgba(255, 255, 255, 0);
-  --color-secondary: rgba(255, 255, 255, 0);
+  --color-primary: #00BCFF;
+  --color-secondary: #0084D1;
   --color-primary-text: #FFFFFF;
   --color-secondary-text: #D1D5DC;
   --color-base-background: #E5E7EB;
@@ -43,6 +48,7 @@
   --font-poppins-regular: "poppins-regular";
   --font-dana-bold: "dana-bold";
   --font-dana-medium: "dana-medium";
+  --font-dana-regular: "dana-regular";
   /* Shadows */
   --shadow-glass: 0px 8px 31px rgba(0, 0, 0, 0.1), inset 1px 1px 0px rgba(255, 255, 255, 0.5), inset -1px -1px 0px rgba(255, 255, 255, 0.2);
   /* Backdrop Blur */
@@ -70,14 +76,14 @@
   }
 
   #info-btn {
-    @apply size-10 justify-center grow-0 shrink-0 cursor-pointer lg:size-11;
+    @apply justify-center grow-0 shrink-0 cursor-pointer;
   }
 
   :where(.search-btn, #info-btn) {
-    @apply hover:[&_.icon]:text-primary active:[&_.icon]:text-primary;
+    @apply hover:[&_.icon]:text-secondary active:[&_.icon]:text-secondary;
   }
 
-  :where(.search-btn, #info-btn) .icon {
+  :where(#ai-btn, .search-btn, #info-btn) .icon {
     @apply text-icon text-[26px] transition-colors duration-200 lg:text-[28px];
   }
 
@@ -86,11 +92,11 @@
   }
 
   .searchbox .search-btn {
-    @apply size-10 absolute left-0 top-1/2 -translate-y-1/2 flex items-center justify-center bg-transparent rounded-full cursor-pointer md:left-1;
+    @apply size-10 absolute left-1 top-1/2 -translate-y-1/2 flex items-center justify-center bg-transparent rounded-full cursor-pointer;
   }
 
   #input-city {
-    @apply size-full pl-11 pr-3 bg-transparent font-dana-medium rounded-full outline-primary/50 ring-primary transition-[outline] duration-100 placeholder:text-primary-text md:pl-12;
+    @apply size-full pl-12 pr-3 bg-transparent font-dana-medium rounded-full outline-secondary/50 ring-secondary transition-[outline] duration-100 placeholder:text-primary-text;
   }
 
   #input-city:focus {
@@ -154,6 +160,15 @@
     @apply text-secondary-text;
   }
 
+  /*! ====== AI suggestion ====== */
+  .suggestion-wrapper {
+    @apply p-4 space-y-2 font-dana-medium bg-glass-background backdrop-blur-primary rounded-3xl shadow-glass;
+  }
+
+  .suggestion-title {
+    @apply font-dana-bold;
+  }
+  
   /*! ====== info container ====== */
   .info-container {
     @apply absolute inset-0 flex items-center justify-center bg-glass-background backdrop-blur-lg z-10;
@@ -195,4 +210,67 @@
   .social-link {
     @apply bg-primary size-full transition-colors duration-100 ease-in-out hover:bg-secondary active:bg-secondary;
   }
+
+  /*! ====== Chatbot section ====== */
+  .ai-container {
+    @apply fixed bottom-4 right-4 font-dana-medium text-black z-9 lg:bottom-10 lg:right-10;
+  }
+
+  #ai-btn {
+    @apply size-12 flex items-center justify-center bg-linear-to-br from-[#FF6F61] to-[#6FA3EF] shadow-glass rounded-full cursor-pointer lg:size-14;
+  }
+
+  .chat-container {
+    @apply size-0 p-4 flex flex-col gap-y-5 absolute -bottom-4 -right-4 bg-linear-to-br from-[rgba(255,111,97,0.5)] to-[rgba(111,163,239,0.5)] backdrop-blur-lg opacity-0 -z-1 overflow-hidden transition-[width,height,opacity] duration-300 md:bottom-0 md:right-0 md:rounded-3xl;
+  }
+
+  .chat-container.open {
+    @apply w-dvw h-dvh opacity-100 z-0 md:w-100 md:h-160;
+  }
+
+  .chat-title,
+  .closex-btn,
+  .chat-input-wrapper > div {
+    @apply flex items-center bg-white rounded-full;
+  }
+
+  .closex-btn {
+    @apply size-10 justify-center grow-0 shrink-0 cursor-pointer transition-colors duration-200 hover:bg-white/80 active:bg-white/80 [&_.icon]:text-xl;
+  }
+
+  /** AI message of the chatbot */
+  .ai-message {
+    @apply flex items-end gap-x-2 self-end;
+  }
+
+  .ai-message .text-message {
+    @apply w-full p-2 bg-white font-dana-regular text-black whitespace-pre-line rounded-2xl rounded-bl-sm lg:text-[15px];
+  }
+
+  .ai-message .text-message .icon {
+    @apply flex text-xl;
+  }
+
+  .ai-message .ai-icon {
+    @apply size-8 flex items-center justify-center grow-0 shrink-0 bg-white rounded-full text-lg text-secondary lg:size-9 lg:text-xl;
+  }
+
+  /** User message of the chatbot */
+  .user-message {
+    @apply self-start;
+  }
+
+  .user-message .text-message {
+    @apply p-2 bg-secondary font-dana-regular text-white rounded-2xl rounded-br-sm;
+  }
+
+  /** Footer of the chatbot */
+  .chatbot-send-btn {
+    @apply flex items-center justify-center grow-0 shrink-0 bg-primary size-9 rounded-full cursor-pointer transition-colors duration-200 hover:bg-secondary active:bg-secondary [&_.icon]:text-2xl [&_.icon]:text-white;
+  }
+
+  #chatbot-input {
+    @apply outline-none;
+  }
+
 }

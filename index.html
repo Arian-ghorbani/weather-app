@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="./css/style.css" />
   </head>
   <body>
-    <div class="background max-w-[700px] mx-auto bg-linear-to-b from-secondary to-primary shadow-xl shadow-primary/50 rounded-b-[3rem]">
-      <div class="container pt-4 pb-8 space-y-6">
+    <div class="background max-w-[700px] mx-auto bg-linear-to-b from-primary to-secondary shadow-2xl shadow-secondary/80 rounded-b-[3rem]">
+      <div class="container pt-4 pb-6 space-y-6">
         <header id="header" class="px-4 flex items-center justify-between gap-x-4">
           <!-- Searchbox -->
           <div class="searchbox">
@@ -20,12 +20,12 @@
           </div>
 
           <!-- Info button -->
-          <button type="button" aria-label="Info-button" id="info-btn">
+          <button type="button" aria-label="Info-button" id="info-btn" class="size-10 lg:size-11">
             <iconify-icon icon="mingcute:information-line" class="icon"></iconify-icon>
           </button>
         </header>
 
-        <main id="main" class="px-4 space-y-8 opacity-0 transition-opacity duration-500">
+        <main id="main" class="px-4 space-y-8 relative">
           <!-- City name -->
           <section class="city-wrapper hidden">
             <div class="location-icon-wrapper flex [&_.icon]:text-icon [&_.icon]:text-lg [&_.icon]:lg:text-xl">
@@ -45,7 +45,7 @@
             </div>
 
             <!-- Main Content -->
-            <div class="main-content space-y-6 hidden">
+            <div class="main-content space-y-6 md:pb-2 hidden">
               <!-- Temp and date -->
               <div class="temp-wrapper flex flex-col items-center gap-y-6">
                 <div class="temp-icon-wrapper">
@@ -61,7 +61,7 @@
                 </h4>
               </div>
 
-              <sapn class="w-[calc(100%-3rem)] h-px mx-auto block bg-glass backdrop-blur-primary shadow-glass" aria-label="separator"></sapn>
+              <sapn class="w-full h-px mx-auto block bg-glass backdrop-blur-primary shadow-glass" aria-label="separator"></sapn>
 
               <!-- Humidity, wind and pressure -->
               <div class="more-info-weather flex items-center justify-center">
@@ -94,6 +94,11 @@
 
                   <h4 class="pressure-title">Pressure</h4>
                 </div>
+              </div>
+
+              <div dir="rtl" class="suggestion-wrapper">
+                <h4 class="suggestion-title">پیشنهاد امروز</h4>
+                <p class="suggestion-for-user">بهتره که لباس گرم بپوشی تا سرما نخوری</p>
               </div>
             </div>
           </section>
@@ -142,14 +147,46 @@
       </div>
     </div>
 
-    <!-- ------ DOM loader ------ -->
-     <div class="dom-loader absolute inset-0 flex items-center justify-center bg-base-background z-11 hidden">
-      <iconify-icon icon="mingcute:loading-fill" class="text-[40px] text-sky-600 animate-spin"></iconify-icon>
-     </div>
+    <!-- AI button -->
+    <div dir="rtl" class="ai-container">
+      <button type="button" aria-label="ai-button" id="ai-btn">
+        <iconify-icon icon="tabler:message-2" class="icon"></iconify-icon>
+      </button>
+
+      <div class="chat-container">
+        <section class="chat-header flex items-center grow-0 shrink-0 gap-x-2">
+          <button type="button" aria-label="close-button-chat-container" class="closex-btn">
+            <iconify-icon icon="mingcute:close-line" class="icon"></iconify-icon>
+          </button>
+          
+          <h2 class="chat-title h-10 px-4 justify-start grow shrink text-base xl:text-[17px]">چت هوشمند</h2>
+        </section>
+
+        <section class="chat-body flex flex-col justify-start grow shrink gap-y-4 overflow-y-scroll [scrollbar-width:none]">
+          <div class="ai-message">
+            <div class="text-message">هر سوالی درباره آب و هوا داری بپرس.</div>
+            <iconify-icon icon="bxs:bot" class="ai-icon"></iconify-icon>
+          </div>
+          <!-- Data loaded From JS -->
+        </section>
+
+        <section class="chat-input-wrapper grow-0 shrink-0">
+          <div class="h-10 px-px gap-x-2 overflow-hidden">
+            <button type="button" aria-label="sent-button" class="chatbot-send-btn">
+              <iconify-icon icon="iconamoon:send-fill" class="icon"></iconify-icon>
+            </button>
+
+            <textarea name="chat-input" id="chatbot-input" class="h-full py-2 pl-4 grow shrink outline-none resize-none" placeholder="پیام ..."></textarea>
+          </div>
+        </section>
+      </div>
+    </div>
 
     <!-- Link to the my JS file -->
     <script src="./js/main.js"></script>
     <!-- Link to the iconify -->
     <script src="https://code.iconify.design/iconify-icon/3.0.0/iconify-icon.min.js"></script>
+    <!-- Link to the markdown -->
+     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   </body>
 </html>
