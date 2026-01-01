@@ -217,7 +217,7 @@
   }
 
   #ai-btn {
-    @apply size-12 flex items-center justify-center bg-linear-to-br from-[#FF6F61] to-[#6FA3EF] shadow-glass rounded-full cursor-pointer lg:size-14;
+    @apply size-13 flex items-center justify-center bg-linear-to-br from-[#FF6F61] to-[#6FA3EF] shadow-glass rounded-full cursor-pointer lg:size-15;
   }
 
   .chat-container {
