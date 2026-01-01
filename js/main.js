@@ -173,7 +173,6 @@ const getAIAPI = async (userMessage) => {
 
   try {
     const data = await res.json();
-    console.log(data);
     responseMessage = data.choices[0].message.content;
     return responseMessage;
   } catch (error) {
