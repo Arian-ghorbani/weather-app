@@ -34,7 +34,7 @@ let weatherData = null;
 // API
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 const API_KEY = "f2a3b99194244950f22614868d9f6217";
-const AI_BASE_URL = "https://router.huggingface.co/v1/chat/completions";
+const AI_BASE_URL = "https://weather-ai.arianghorbani220687.workers.dev";
 
 // Search loader
 const showSearchLoading = () => {
@@ -165,19 +165,15 @@ const getAIAPI = async (userMessage) => {
 
   const res = await fetch(AI_BASE_URL, {
     headers: {
-			"Authorization": `Bearer ${AI_API_KEY}`,
 			"Content-Type": "application/json",
 		},
 		method: "POST",
-		body: JSON.stringify({
-      messages,
-      "model": "openai/gpt-oss-120b",
-      "stream": false
-    }),
+		body: JSON.stringify({ messages }),
   });
 
   try {
     const data = await res.json();
+    console.log(data);
     responseMessage = data.choices[0].message.content;
     return responseMessage;
   } catch (error) {
