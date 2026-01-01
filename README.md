@@ -2,7 +2,7 @@
 
 A simple and modern web application for checking the current weather of any city — with **Dark/Light Mode** support.
 
-<img src="https://github.com/Arian-ghorbani/weather-app/blob/master/assets/image/weather-app-desktop.PNG" width="70%">
+<img src="https://github.com/Arian-ghorbani/weather-app/blob/master/assets/images/weather-app-desktop.PNG" width="70%">
 
 ## 📌 About the Project
 
