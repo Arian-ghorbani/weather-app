@@ -76,7 +76,7 @@
   }
 
   #info-btn {
-    @apply justify-center grow-0 shrink-0 cursor-pointer;
+    @apply size-10.5 justify-center grow-0 shrink-0 cursor-pointer lg:size-11;
   }
 
   :where(.search-btn, #info-btn) {
@@ -88,7 +88,7 @@
   }
 
   .searchbox {
-    @apply h-10 relative grow shrink md:w-100 lg:h-11;
+    @apply h-10.5 relative grow shrink md:w-100 lg:h-11;
   }
 
   .searchbox .search-btn {
@@ -116,11 +116,11 @@
 
   /** Temp and date section */
   .temp-wrapper .icon {
-    @apply text-icon text-[4.9rem] md:text-[5.2rem] lg:text-[5.9rem] xl:text-[6.4rem];
+    @apply text-icon text-[5.5rem] md:text-[5.7rem] lg:text-[6rem] xl:text-[6.5rem];
   }
 
   .temp {
-    @apply relative font-poppins-bold text-5xl md:text-[55px] lg:text-[65px] xl:text-7xl;
+    @apply relative font-poppins-bold text-6xl md:text-[4rem] lg:text-[4.25rem] xl:text-[4.6rem];
   }
 
   .temp::after {
@@ -129,7 +129,7 @@
   }
 
   .date {
-    @apply text-secondary-text text-[15px] -mt-2 md:text-base lg:text-[17px];
+    @apply text-secondary-text text-[15px] md:text-base lg:text-[17px];
   }
 
   /*! ====== More info weather section ====== */
@@ -213,15 +213,15 @@
 
   /*! ====== Chatbot section ====== */
   .ai-container {
-    @apply fixed bottom-4 right-4 font-dana-medium text-black z-9 lg:bottom-10 lg:right-10;
+    @apply fixed bottom-4 right-4 font-dana-medium text-black z-9 md:bottom-10 md:right-10;
   }
 
   #ai-btn {
-    @apply size-13 flex items-center justify-center bg-linear-to-br from-[#FF6F61] to-[#6FA3EF] shadow-glass rounded-full cursor-pointer lg:size-15;
+    @apply size-13.5 flex items-center justify-center bg-linear-to-br from-[#FF6F61] to-[#6FA3EF] shadow-glass rounded-full cursor-pointer lg:size-15;
   }
 
   .chat-container {
-    @apply size-0 p-4 flex flex-col gap-y-5 absolute -bottom-4 -right-4 bg-linear-to-br from-[rgba(255,111,97,0.5)] to-[rgba(111,163,239,0.5)] backdrop-blur-lg opacity-0 -z-1 overflow-hidden transition-[width,height,opacity] duration-300 md:bottom-0 md:right-0 md:rounded-3xl;
+    @apply size-0 p-4 flex flex-col gap-y-5 absolute -bottom-4 -right-4 bg-linear-to-br from-[rgba(255,111,97,0.5)] to-[rgba(111,163,239,0.5)] backdrop-blur-lg opacity-0 -z-1 overflow-hidden transition-[width,height,opacity] duration-300 md:bottom-0 md:right-0 md:rounded-4xl;
   }
 
   .chat-container.open {
@@ -235,7 +235,7 @@
   }
 
   .closex-btn {
-    @apply size-10 justify-center grow-0 shrink-0 cursor-pointer transition-colors duration-200 hover:bg-white/80 active:bg-white/80 [&_.icon]:text-xl;
+    @apply size-11 justify-center grow-0 shrink-0 cursor-pointer transition-colors duration-200 hover:bg-white/80 active:bg-white/80 [&_.icon]:text-xl;
   }
 
   /** AI message of the chatbot */
@@ -244,7 +244,7 @@
   }
 
   .ai-message .text-message {
-    @apply w-full p-2 bg-white font-dana-regular text-black whitespace-pre-line rounded-2xl rounded-bl-sm lg:text-[15px];
+    @apply w-full p-2 bg-white font-dana-regular text-black leading-[1.6rem] whitespace-pre-line rounded-2xl rounded-bl-sm lg:text-[15px];
   }
 
   .ai-message .text-message .icon {
@@ -261,12 +261,12 @@
   }
 
   .user-message .text-message {
-    @apply p-2 bg-secondary font-dana-regular text-white rounded-2xl rounded-br-sm;
+    @apply p-2 bg-secondary font-dana-regular text-white leading-[1.6rem] rounded-2xl rounded-br-sm;
   }
 
   /** Footer of the chatbot */
   .chatbot-send-btn {
-    @apply flex items-center justify-center grow-0 shrink-0 bg-primary size-9 rounded-full cursor-pointer transition-colors duration-200 hover:bg-secondary active:bg-secondary [&_.icon]:text-2xl [&_.icon]:text-white;
+    @apply size-10 flex items-center justify-center grow-0 shrink-0 bg-primary rounded-full cursor-pointer transition-colors duration-200 hover:bg-secondary active:bg-secondary [&_.icon]:text-2xl [&_.icon]:text-white;
   }
   
 }

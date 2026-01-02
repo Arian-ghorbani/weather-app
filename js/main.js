@@ -216,8 +216,13 @@ closeChatBtn.addEventListener("click", (e) => {
 
 chatbotSendBtn.addEventListener("click", sentMessage);
 
-chatbotInput.addEventListener("keyup", (e) => { if (e.key === "Enter") sentMessage() });
+chatbotInput.addEventListener("keyup", (e) => e.key === "Enter" && sentMessage());
 
 // ====== Events ======
 searchBtn.addEventListener("click", getWeatherAPI);
-inputCityName.addEventListener("keyup", (e) => e.key === "Enter" && getWeatherAPI());
+inputCityName.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    getWeatherAPI();
+  }
+});
