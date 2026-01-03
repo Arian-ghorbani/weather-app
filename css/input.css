@@ -261,7 +261,7 @@
   }
 
   .user-message .text-message {
-    @apply p-2 bg-secondary font-dana-regular text-white leading-[1.6rem] rounded-2xl rounded-br-sm;
+    @apply p-2 bg-secondary font-dana-regular text-white leading-[1.6rem] whitespace-pre-line rounded-2xl rounded-br-sm;
   }
 
   /** Footer of the chatbot */

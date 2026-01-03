@@ -1,6 +1,7 @@
 // ====== DOM ======
 const htmlElem = document.documentElement;
 // Header
+const cirySearchForm = document.querySelector("#ciry-search-form");
 const searchBtn = document.querySelector(".search-btn");
 const inputCityName = document.querySelector("#city-input");
 // City name section
@@ -19,6 +20,7 @@ const aiBtn = document.querySelector("#ai-btn");
 const chatContainerElem = document.querySelector(".chat-container");
 const closeChatBtn = document.querySelector(".closex-btn");
 const chatBodyElem = document.querySelector(".chat-body");
+const chatbotForm = document.querySelector("#chatbot-form");
 const chatbotSendBtn = document.querySelector(".chatbot-send-btn");
 const chatbotInput = document.querySelector("#chatbot-input");
 
@@ -196,6 +198,13 @@ const sentMessage = () => {
   }
 };
 
+// ====== Events ======
+searchBtn.addEventListener("click", getWeatherAPI);
+cirySearchForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  getWeatherAPI();
+})
+
 // ====== Developer Info ======
 infoBtn.addEventListener("click", () => infoContainer.classList.remove("hidden"));
 infoContainer.addEventListener("click", (e) => {
@@ -207,16 +216,12 @@ aiBtn.addEventListener("click", (e) => {
   // Show chatbot
   if (aiBtn && e.target.closest("#ai-btn")) chatContainerElem.classList.add("open");
 });
-
 closeChatBtn.addEventListener("click", (e) => {
   // Hide chatbot
   if (closeChatBtn && e.target.closest(".closex-btn")) chatContainerElem.classList.remove("open");
 });
-
 chatbotSendBtn.addEventListener("click", sentMessage);
-
-chatbotInput.addEventListener("keyup", (e) => e.key === "Enter" && sentMessage());
-
-// ====== Events ======
-searchBtn.addEventListener("click", getWeatherAPI);
-inputCityName.addEventListener("keyup", (e) => e.key === "Enter" && getWeatherAPI());
+chatbotForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  sentMessage();
+});
