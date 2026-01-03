@@ -219,9 +219,4 @@ chatbotInput.addEventListener("keyup", (e) => e.key === "Enter" && sentMessage()
 
 // ====== Events ======
 searchBtn.addEventListener("click", getWeatherAPI);
-inputCityName.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    e.preventDefault();
-    getWeatherAPI();
-  }
-});
+inputCityName.addEventListener("keyup", (e) => e.key === "Enter" && getWeatherAPI());
