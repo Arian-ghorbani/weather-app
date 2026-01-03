@@ -1,6 +1,6 @@
 # 🌤️ Weather App
 
-A simple and modern web application for checking the current weather of any city — with **Dark/Light Mode** support.
+A simple and modern web application for checking the current weather of any city.
 
 <img src="https://github.com/Arian-ghorbani/weather-app/blob/master/assets/images/weather-app-desktop.PNG" width="70%">
 
@@ -10,7 +10,7 @@ Weather App is a lightweight tool that allows users to search for any city and v
 
 | 🌡️ Temperature | | 💧 Humidity | | 🌬️ Wind Speed | | 🧭 Pressure | | 🖼️ Weather Condition Image (Icon) |
 
-The app uses the **OpenWeatherMap API** and includes a **Dark/Light theme switcher** for an improved user experience.
+The app uses the **OpenWeatherMap API**.
 
 ## 🚀 Features
 
@@ -20,9 +20,21 @@ The app uses the **OpenWeatherMap API** and includes a **Dark/Light theme switch
 - 🌬️ Show wind speed
 - 🧭 Show pressure
 - 🖼️ Weather condition icon
-- 🌙☀️ Dark / Light theme toggle
 - ❗ Error message for invalid city names
 - ⚡ Fully responsive UI
+
+## 🤖 AI Features
+
+This project includes AI-powered features to enhance the weather experience.
+
+- **Smart Suggestions:**  
+  Provides clothing and activity recommendations based on weather data such as temperature, humidity, wind, and conditions.
+
+- **AI Chat Assistant:**  
+  Allows users to ask weather-related questions in natural language and receive answers in Persian.
+
+- **Secure Integration:**  
+  AI requests are handled through a Cloudflare Worker to keep API keys secure.
 
 ## 🛠️ Tech Stack
 
