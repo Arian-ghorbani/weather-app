@@ -11,13 +11,13 @@
       <div class="container pt-4 pb-6 space-y-6">
         <header id="header" class="px-4 flex items-center justify-between gap-x-4">
           <!-- Searchbox -->
-          <div class="searchbox">
+          <form action="#" id="ciry-search-form">
             <button type="button" aria-label="Search-button" class="search-btn">
               <iconify-icon icon="mingcute:search-3-line" class="icon"></iconify-icon>
             </button>
 
-            <input type="text" placeholder="Search..." id="input-city" />
-          </div>
+            <input type="text" placeholder="Search..." id="city-input" />
+          </form>
 
           <!-- Info button -->
           <button type="button" aria-label="Info-button" id="info-btn">
@@ -171,13 +171,13 @@
         </section>
 
         <section class="chat-input-wrapper grow-0 shrink-0">
-          <div class="h-12 px-[3px] gap-x-2 overflow-hidden">
+          <form action="#" id="chatbot-form" class="h-12 px-[3px] gap-x-2 overflow-hidden">
             <button type="button" aria-label="sent-button" class="chatbot-send-btn">
               <iconify-icon icon="iconamoon:send-fill" class="icon"></iconify-icon>
             </button>
 
             <textarea name="chat-input" id="chatbot-input" class="h-full py-[11px] pl-4 grow shrink outline-none resize-none leading-6" placeholder="پیام ..."></textarea>
-          </div>
+          </form>
         </section>
       </div>
     </div>

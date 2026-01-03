@@ -2,7 +2,7 @@
 const htmlElem = document.documentElement;
 // Header
 const searchBtn = document.querySelector(".search-btn");
-const inputCityName = document.querySelector("#input-city");
+const inputCityName = document.querySelector("#city-input");
 // City name section
 const cityNameElem = document.querySelector(".city-wrapper");
 // Search status section

@@ -70,7 +70,7 @@
 @layer components {
 
   /*! ====== Header section ====== */
-  .searchbox,
+  #ciry-search-form,
   #info-btn {
     @apply flex items-center bg-glass-background backdrop-blur-primary shadow-glass rounded-full;
   }
@@ -87,19 +87,19 @@
     @apply text-icon text-[26px] transition-colors duration-200 lg:text-[28px];
   }
 
-  .searchbox {
+  #ciry-search-form {
     @apply h-10.5 relative grow shrink md:w-100 lg:h-11;
   }
 
-  .searchbox .search-btn {
+  #ciry-search-form .search-btn {
     @apply size-10 absolute left-1 top-1/2 -translate-y-1/2 flex items-center justify-center bg-transparent rounded-full cursor-pointer;
   }
 
-  #input-city {
+  #city-input {
     @apply size-full pl-12 pr-3 bg-transparent font-dana-medium rounded-full outline-secondary/50 ring-secondary transition-[outline] duration-100 placeholder:text-primary-text;
   }
 
-  #input-city:focus {
+  #city-input:focus {
     @apply outline-4 outline-solid ring-1;
   }
 
@@ -230,7 +230,7 @@
 
   .chat-title,
   .closex-btn,
-  .chat-input-wrapper > div {
+  #chatbot-form {
     @apply flex items-center bg-white rounded-full;
   }
 
